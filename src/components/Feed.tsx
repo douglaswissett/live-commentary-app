@@ -40,7 +40,7 @@ export default class Feed extends Component {
     this.forceUpdate();
   };
 
-  render(): Component {
+  render() {
     const { data } = this.state;
     return (
       <Timeline

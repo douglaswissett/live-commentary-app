@@ -1,18 +1,19 @@
-import React, { PureComponent } from 'react';
-import { StyleSheet, Text } from 'react-native';
-import { Container, Feed } from './components';
+import React from 'react';
+import { StyleSheet, Text, Platform, UIManager } from 'react-native';
+import { Container, Feed, Highlights } from './components';
+
+if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
+  UIManager.setLayoutAnimationEnabledExperimental(true);
+}
 
 interface Props {}
-export default class App extends PureComponent<Props> {
-  render() {
-    return (
-      <Container>
-        <Text style={styles.title}>Live commentary</Text>
-        <Feed />
-      </Container>
-    );
-  }
-}
+const App: React.FunctionComponent<Props> = () => (
+  <Container>
+    <Text style={styles.title}>Live commentary</Text>
+    <Feed />
+    <Highlights />
+  </Container>
+);
 
 const styles = StyleSheet.create({
   container: {
@@ -27,3 +28,5 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
   },
 });
+
+export default App;
