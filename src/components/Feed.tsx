@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, RefreshControl } from 'react-native';
 import { connect } from 'react-redux';
 // @ts-ignore
 import Timeline from 'react-native-timeline-feed';
@@ -33,14 +33,22 @@ class Feed extends PureComponent<Props> {
     this.forceUpdate();
   };
 
+  onRefresh = () => console.log('pull to refresh');
+
   render() {
-    const { data } = this.props.app;
+    const { data, isFetching } = this.props.app;
     return (
       <Timeline
         data={data.live_commentary}
         onEventPress={this.handleOnEventPress}
         flatListProps={{
           ref: this.flatlistRef,
+          refreshControl: (
+            <RefreshControl
+              refreshing={isFetching}
+              onRefresh={this.onRefresh}
+            />
+          ),
         }}
       />
     );

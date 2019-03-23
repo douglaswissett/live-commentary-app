@@ -47,7 +47,7 @@ export const getLiveCommentary = () => async (dispatch): GetLiveCommentary => {
 
   setTimeout(() => {
     dispatch(createGetLiveCommentarySuccess(apiData));
-  }, 800);
+  }, 600);
 };
 
 export type AppActions = GetLiveCommentary | GetLiveCommentarySuccess | GetLiveCommentaryError;
