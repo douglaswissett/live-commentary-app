@@ -43,6 +43,9 @@ class Feed extends PureComponent<Props> {
         onEventPress={this.handleOnEventPress}
         flatListProps={{
           ref: this.flatlistRef,
+          contentContainerStyle: {
+            paddingRight: 20,
+          },
           refreshControl: (
             <RefreshControl
               refreshing={isFetching}
