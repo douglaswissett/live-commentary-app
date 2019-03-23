@@ -27,6 +27,12 @@ module.exports = {
     "plugins": [
         "react"
     ],
-    "rules": {
-    }
+    "rules": {},
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "extensions": [".js", ".jsx", ".ts", ".tsx"]
+            },
+        },
+    },
 };
