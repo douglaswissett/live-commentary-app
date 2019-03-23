@@ -30,7 +30,8 @@ module.exports = {
     "rules": {
         "@typescript-eslint/indent": ["error", 2],
         "@typescript-eslint/explicit-member-accessibility": 0,
-        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }]
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+        "no-underscore-dangle": 0,
     },
     "settings": {
         "import/resolver": {
