@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { StyleSheet, Text } from 'react-native';
-import { Container } from './components';
+import { Container, Feed } from './components';
 
 interface Props {}
 export default class App extends PureComponent<Props> {
@@ -8,6 +8,7 @@ export default class App extends PureComponent<Props> {
     return (
       <Container>
         <Text style={styles.title}>Live commentary</Text>
+        <Feed />
       </Container>
     );
   }

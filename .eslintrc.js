@@ -28,6 +28,9 @@ module.exports = {
         "react"
     ],
     "rules": {
+        "@typescript-eslint/indent": ["error", 2],
+        "@typescript-eslint/explicit-member-accessibility": 0,
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }]
     },
     "settings": {
         "import/resolver": {

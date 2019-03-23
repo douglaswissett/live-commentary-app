@@ -6,7 +6,8 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
     "lint": "eslint .",
-    "format": "prettier --write App.tsx"
+    "format": "prettier --write App.tsx",
+    "debugger": "open \"rndebugger://set-debugger-loc?host=localhost&port=8081\""
   },
   "dependencies": {
     "react": "16.8.3",
