@@ -27,7 +27,8 @@ module.exports = {
     "plugins": [
         "react"
     ],
-    "rules": {},
+    "rules": {
+    },
     "settings": {
         "import/resolver": {
             "node": {
