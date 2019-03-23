@@ -32,6 +32,7 @@ module.exports = {
         "@typescript-eslint/explicit-member-accessibility": 0,
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
         "no-underscore-dangle": 0,
+        "react/destructuring-assignment": 0,
     },
     "settings": {
         "import/resolver": {

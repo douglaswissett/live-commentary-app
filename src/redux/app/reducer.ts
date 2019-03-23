@@ -2,14 +2,21 @@
 
 import { GET_LIVE_COMMENTARY, GET_LIVE_COMMENTARY_SUCCESS, GET_LIVE_COMMENTARY_ERROR } from './types';
 
+export interface AppState {
+  isFetching: boolean;
+  data: {};
+  error: boolean;
+  errorMessage: string;
+}
+
 export const initialState = {
   isFetching: false,
-  data: { questions: [] },
+  data: {},
   error: false,
   errorMessage: '',
 };
 
-export default (state = initialState, action) => {
+export default (state: AppState = initialState, action) => {
   switch (action.type) {
     case GET_LIVE_COMMENTARY:
       return {

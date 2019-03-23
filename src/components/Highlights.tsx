@@ -1,49 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, LayoutAnimation, Image } from 'react-native';
-
-interface Props {}
-interface State {
-  open: boolean;
-}
-export default class Highlights extends PureComponent<Props, State> {
-  state = {
-    open: true,
-  };
-
-  openClose = () => {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-    this.setState(prevState => ({ open: !prevState.open }));
-  };
-
-  render() {
-    return (
-      <View style={[styles.container, { height: this.state.open ? 200 : 60 }]}>
-        <View style={styles.header}>
-          <View style={{ width: 44 }} />
-          <Text style={styles.title}>Key moments</Text>
-          <TouchableOpacity
-            style={[
-              styles.button,
-              {
-                transform: [{ rotate: this.state.open ? '180deg' : '0deg' }],
-              },
-            ]}
-            onPress={this.openClose}
-          >
-            <Image source={require('../assets/chevron.png')} style={{ width: 16, height: 16 }} />
-          </TouchableOpacity>
-        </View>
-        {this.state.open && (
-          <View style={styles.body}>
-            <Text style={styles.paragraph}>TEST EVENT HERE</Text>
-            <Text style={styles.paragraph}>TEST EVENT HERE</Text>
-            <Text style={styles.paragraph}>TEST EVENT HERE</Text>
-          </View>
-        )}
-      </View>
-    );
-  }
-}
+import { connect } from 'react-redux';
 
 const styles = StyleSheet.create({
   container: {
@@ -77,3 +34,56 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
+
+interface Props {}
+
+interface State {
+  open: boolean;
+}
+
+class Highlights extends PureComponent<Props, State> {
+  state = {
+    open: true,
+  };
+
+  openClose = () => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    this.setState(prevState => ({ open: !prevState.open }));
+  };
+
+  render() {
+    const { data } = this.props.app;
+    return (
+      <View style={[styles.container, { height: this.state.open ? 200 : 60 }]}>
+        <View style={styles.header}>
+          <View style={{ width: 44 }} />
+          <Text style={styles.title}>Key moments</Text>
+          <TouchableOpacity
+            style={[
+              styles.button,
+              {
+                transform: [{ rotate: this.state.open ? '180deg' : '0deg' }],
+              },
+            ]}
+            onPress={this.openClose}
+          >
+            <Image source={require('../assets/chevron.png')} style={{ width: 16, height: 16 }} />
+          </TouchableOpacity>
+        </View>
+        {this.state.open && (
+          <View style={styles.body}>
+            {data &&
+              data.highlights &&
+              data.highlights.map(hl => <Text key={hl.id} style={styles.paragraph}>{`${hl.time} - ${hl.title}`}</Text>)}
+          </View>
+        )}
+      </View>
+    );
+  }
+}
+
+const mapStateToProps = state => ({
+  app: state.app,
+});
+
+export default connect(mapStateToProps)(Highlights);

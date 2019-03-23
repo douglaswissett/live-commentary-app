@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { FlatList } from 'react-native';
+import { connect } from 'react-redux';
 // @ts-ignore
 import Timeline from 'react-native-timeline-feed';
-
-const api = require('../api/data');
 
 const DEFAULT_CIRCLE_SIZE = 16;
 
@@ -11,20 +10,14 @@ interface FeedItemProps {
   circleSize: number;
 }
 
-export default class Feed extends Component {
+interface Props {
+
+}
+
+class Feed extends PureComponent<Props> {
   flatlistRef = React.createRef<FlatList<any>>();
 
   prevItem: FeedItemProps | void = undefined;
-
-  state = {
-    data: [],
-  };
-
-  componentDidMount = () => {
-    setTimeout(() => {
-      this.setState({ data: api.live_commentary });
-    }, 800);
-  };
 
   handleOnEventPress = (item: FeedItemProps) => {
     item.circleSize = DEFAULT_CIRCLE_SIZE * 2;
@@ -41,10 +34,10 @@ export default class Feed extends Component {
   };
 
   render() {
-    const { data } = this.state;
+    const { data } = this.props.app;
     return (
       <Timeline
-        data={data}
+        data={data.live_commentary}
         onEventPress={this.handleOnEventPress}
         flatListProps={{
           ref: this.flatlistRef,
@@ -53,3 +46,9 @@ export default class Feed extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  app: state.app,
+});
+
+export default connect(mapStateToProps)(Feed);
