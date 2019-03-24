@@ -1,10 +1,11 @@
 // @flow
 
 import { GET_LIVE_COMMENTARY, GET_LIVE_COMMENTARY_SUCCESS, GET_LIVE_COMMENTARY_ERROR } from './types';
+import ApiData from '../../models/ApiData';
 
 export interface AppState {
   isFetching: boolean;
-  data: {};
+  data: ApiData;
   error: boolean;
   errorMessage: string;
 }

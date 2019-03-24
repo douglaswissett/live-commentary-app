@@ -3,6 +3,8 @@ import { FlatList, RefreshControl } from 'react-native';
 import { connect } from 'react-redux';
 // @ts-ignore
 import Timeline from 'react-native-timeline-feed';
+import { RootState } from '../redux/store';
+import { AppState } from '../redux/app/reducer';
 
 const DEFAULT_CIRCLE_SIZE = 16;
 
@@ -11,7 +13,7 @@ interface FeedItemProps {
 }
 
 interface Props {
-
+  app: AppState;
 }
 
 class Feed extends PureComponent<Props> {
@@ -46,19 +48,14 @@ class Feed extends PureComponent<Props> {
           contentContainerStyle: {
             paddingRight: 20,
           },
-          refreshControl: (
-            <RefreshControl
-              refreshing={isFetching}
-              onRefresh={this.onRefresh}
-            />
-          ),
+          refreshControl: <RefreshControl refreshing={isFetching} onRefresh={this.onRefresh} />,
         }}
       />
     );
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: RootState) => ({
   app: state.app,
 });
 

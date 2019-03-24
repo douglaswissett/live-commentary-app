@@ -1,6 +1,11 @@
 import React, { PureComponent } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, LayoutAnimation, Image } from 'react-native';
 import { connect } from 'react-redux';
+import { RootState } from '../redux/store';
+import { AppState } from '../redux/app/reducer';
+
+// Asset
+import chevronPNG from '../assets/chevron.png';
 
 const styles = StyleSheet.create({
   container: {
@@ -35,7 +40,9 @@ const styles = StyleSheet.create({
   },
 });
 
-interface Props {}
+interface Props {
+  app: AppState;
+}
 
 interface State {
   open: boolean;
@@ -67,7 +74,7 @@ class Highlights extends PureComponent<Props, State> {
             ]}
             onPress={this.openClose}
           >
-            <Image source={require('../assets/chevron.png')} style={{ width: 16, height: 16 }} />
+            <Image source={chevronPNG} style={{ width: 16, height: 16 }} />
           </TouchableOpacity>
         </View>
         {this.state.open && (
@@ -82,7 +89,7 @@ class Highlights extends PureComponent<Props, State> {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: RootState) => ({
   app: state.app,
 });
 

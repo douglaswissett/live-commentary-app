@@ -2,7 +2,11 @@ import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 
 // Reducers
-import appReducer from './app/reducer';
+import appReducer, { AppState } from './app/reducer';
+
+export interface RootState {
+  app: AppState;
+}
 
 const reducers = {
   app: appReducer,

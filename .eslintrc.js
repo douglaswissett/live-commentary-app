@@ -33,6 +33,7 @@ module.exports = {
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
         "no-underscore-dangle": 0,
         "react/destructuring-assignment": 0,
+        "no-param-reassign": 1,
     },
     "settings": {
         "import/resolver": {
