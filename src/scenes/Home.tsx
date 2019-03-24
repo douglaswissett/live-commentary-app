@@ -18,6 +18,8 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 32,
     textAlign: 'center',
+    fontWeight: 'bold',
+    color: 'tomato',
     paddingBottom: 10,
   },
 });
@@ -26,7 +28,7 @@ interface Props {
   dispatchGetLiveCommentary: () => void;
 }
 
-class Home extends PureComponent<Props> {
+export class Home extends PureComponent<Props> {
   componentDidMount = () => {
     this.props.dispatchGetLiveCommentary();
   };

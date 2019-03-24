@@ -46,10 +46,18 @@ class Feed extends PureComponent<Props> {
         flatListProps={{
           ref: this.flatlistRef,
           contentContainerStyle: {
-            paddingRight: 20,
+            paddingHorizontal: 20,
           },
           refreshControl: <RefreshControl refreshing={isFetching} onRefresh={this.onRefresh} />,
         }}
+        // Styling props
+        timeStyle={{
+          textAlign: 'center',
+          backgroundColor: 'dodgerblue',
+          color: 'white',
+          fontSize: 24,
+        }}
+        descriptionStyle={{ color: 'gray' }}
       />
     );
   }

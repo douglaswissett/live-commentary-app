@@ -10,6 +10,7 @@ import chevronPNG from '../assets/chevron.png';
 const styles = StyleSheet.create({
   container: {
     borderTopWidth: 2,
+    borderColor: 'dodgerblue',
   },
   header: {
     flexDirection: 'row',
@@ -25,10 +26,13 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     textAlign: 'center',
+    fontWeight: 'bold',
+    color: 'tomato',
   },
   paragraph: {
     flex: 1,
     textAlign: 'center',
+    fontSize: 16,
   },
   button: {
     borderWidth: 1,
@@ -81,7 +85,13 @@ class Highlights extends PureComponent<Props, State> {
           <View style={styles.body}>
             {data &&
               data.highlights &&
-              data.highlights.map(hl => <Text key={hl.id} style={styles.paragraph}>{`${hl.time} - ${hl.title}`}</Text>)}
+              data.highlights.map(hl => (
+                <Text key={hl.id} style={styles.paragraph}>
+                  <Text style={{ color: 'tomato', fontWeight: 'bold' }}>{hl.time}</Text>
+                  {' - '}
+                  {hl.title}
+                </Text>
+              ))}
           </View>
         )}
       </View>
