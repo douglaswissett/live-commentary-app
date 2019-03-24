@@ -41,7 +41,7 @@ class Feed extends PureComponent<Props> {
     const { data, isFetching } = this.props.app;
     return (
       <Timeline
-        data={data.live_commentary}
+        data={(data && data.live_commentary) || []}
         onEventPress={this.handleOnEventPress}
         flatListProps={{
           ref: this.flatlistRef,

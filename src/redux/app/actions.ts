@@ -1,11 +1,11 @@
 import { Action } from 'redux';
-import { GET_LIVE_COMMENTARY, GET_LIVE_COMMENTARY_SUCCESS, GET_LIVE_COMMENTARY_ERROR } from './types';
+import { ThunkDispatch } from 'redux-thunk';
+import AppActionTypes from './types';
 import apiData from '../../api/data.json';
+import ApiData from '../../models/ApiData';
 
-export enum AppActionTypes {
-  GetLiveCommentary = '[App] GetLiveCommentary',
-  GetLiveCommentarySuccess = '[App] GetLiveCommentary Success',
-  GetLiveCommentaryError = '[App] GetLiveCommentary Error',
+interface Error {
+  message: string;
 }
 
 export interface GetLiveCommentary extends Action {
@@ -14,35 +14,35 @@ export interface GetLiveCommentary extends Action {
 
 export interface GetLiveCommentarySuccess extends Action {
   type: AppActionTypes.GetLiveCommentarySuccess;
-  payload: any;
+  payload: ApiData;
 }
 
 export interface GetLiveCommentaryError extends Action {
   type: AppActionTypes.GetLiveCommentaryError;
-  payload: any;
+  payload: Error;
 }
 
-export function createGetLiveCommentary() {
+export function createGetLiveCommentary(): GetLiveCommentary {
   return {
-    type: GET_LIVE_COMMENTARY,
+    type: AppActionTypes.GetLiveCommentary,
   };
 }
 
-export function createGetLiveCommentarySuccess(payload): GetLiveCommentarySuccess {
+export function createGetLiveCommentarySuccess(payload: ApiData): GetLiveCommentarySuccess {
   return {
-    type: GET_LIVE_COMMENTARY_SUCCESS,
+    type: AppActionTypes.GetLiveCommentarySuccess,
     payload,
   };
 }
 
-export function createGetLiveCommentaryError(payload): GetLiveCommentaryError {
+export function createGetLiveCommentaryError(payload: Error): GetLiveCommentaryError {
   return {
-    type: GET_LIVE_COMMENTARY_ERROR,
+    type: AppActionTypes.GetLiveCommentaryError,
     payload,
   };
 }
 
-export const getLiveCommentary = () => async (dispatch): GetLiveCommentary => {
+export const getLiveCommentary = () => async (dispatch: ThunkDispatch<{}, {}, Action>): Promise<void> => {
   dispatch(createGetLiveCommentary());
 
   setTimeout(() => {

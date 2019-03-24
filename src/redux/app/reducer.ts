@@ -1,37 +1,38 @@
 // @flow
 
-import { GET_LIVE_COMMENTARY, GET_LIVE_COMMENTARY_SUCCESS, GET_LIVE_COMMENTARY_ERROR } from './types';
+import { AppActions } from './actions';
+import AppActionTypes from './types';
 import ApiData from '../../models/ApiData';
 
 export interface AppState {
   isFetching: boolean;
-  data: ApiData;
+  data: ApiData | undefined;
   error: boolean;
   errorMessage: string;
 }
 
 export const initialState = {
   isFetching: false,
-  data: {},
+  data: undefined,
   error: false,
   errorMessage: '',
 };
 
-export default (state: AppState = initialState, action) => {
+export default (state: AppState = initialState, action: AppActions) => {
   switch (action.type) {
-    case GET_LIVE_COMMENTARY:
+    case AppActionTypes.GetLiveCommentary:
       return {
         ...state,
         error: false,
         isFetching: true,
       };
-    case GET_LIVE_COMMENTARY_SUCCESS:
+    case AppActionTypes.GetLiveCommentarySuccess:
       return {
         ...state,
         data: action.payload,
         isFetching: false,
       };
-    case GET_LIVE_COMMENTARY_ERROR:
+    case AppActionTypes.GetLiveCommentaryError:
       return {
         ...state,
         error: true,

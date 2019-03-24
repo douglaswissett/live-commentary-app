@@ -21,6 +21,7 @@ const initialState = {};
 // Middleware
 const middleware = [thunk];
 
+// @ts-ignore
 // Enchancers
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
