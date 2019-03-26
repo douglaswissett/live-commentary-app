@@ -13,6 +13,7 @@ interface Commentary {
 
 interface Highlight {
   id: string;
+  commentary_id: string;
   time: string;
   title: string;
 }

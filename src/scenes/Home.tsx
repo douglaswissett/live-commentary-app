@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { StyleSheet, Text, Platform, UIManager } from 'react-native';
+import { StyleSheet, Text, Platform, UIManager, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { Container, Feed, Highlights } from '../components';
 import { getLiveCommentary } from '../redux/app/actions';
@@ -29,6 +29,8 @@ interface Props {
 }
 
 export class Home extends PureComponent<Props> {
+  flatlistRef = React.createRef<FlatList<any>>();
+
   componentDidMount = () => {
     this.props.dispatchGetLiveCommentary();
   };
@@ -37,8 +39,8 @@ export class Home extends PureComponent<Props> {
     return (
       <Container>
         <Text style={styles.title}>Live commentary</Text>
-        <Feed />
-        <Highlights />
+        <Feed flatlistRef={this.flatlistRef} />
+        <Highlights flatlistRef={this.flatlistRef} />
       </Container>
     );
   }

@@ -7,6 +7,8 @@ import { AppState } from '../redux/app/reducer';
 // Asset
 import chevronPNG from '../assets/chevron.png';
 
+const DEFAULT_CIRCLE_SIZE = 16;
+
 const styles = StyleSheet.create({
   container: {
     borderTopWidth: 2,
@@ -53,6 +55,8 @@ interface State {
 }
 
 class Highlights extends PureComponent<Props, State> {
+  prevItem: FeedItemProps | void = undefined;
+
   state = {
     open: true,
   };
@@ -60,6 +64,12 @@ class Highlights extends PureComponent<Props, State> {
   openClose = () => {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     this.setState(prevState => ({ open: !prevState.open }));
+  };
+
+  _handleHighlightPress = hl => {
+    const { data } = this.props.app;
+    const item = data.live_commentary.find(lc => lc.id === hl.commentary_id);
+    this.props.flatlistRef.current.scrollToItem({ item });
   };
 
   render() {
@@ -86,11 +96,13 @@ class Highlights extends PureComponent<Props, State> {
             {data &&
               data.highlights &&
               data.highlights.map(hl => (
-                <Text key={hl.id} style={styles.paragraph}>
-                  <Text style={{ color: 'tomato', fontWeight: 'bold' }}>{hl.time}</Text>
-                  {' - '}
-                  {hl.title}
-                </Text>
+                <TouchableOpacity style={{ flex: 1 }} key={hl.id} onPress={() => this._handleHighlightPress(hl)}>
+                  <Text style={styles.paragraph}>
+                    <Text style={{ color: 'tomato', fontWeight: 'bold' }}>{hl.time}</Text>
+                    {' - '}
+                    {hl.title}
+                  </Text>
+                </TouchableOpacity>
               ))}
           </View>
         )}

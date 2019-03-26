@@ -12,8 +12,8 @@
     {"id": "d5d8643e-6f22-4a43-b9a8-59b94970aa92", "key": "9", "time": "72", "title": "Robyn Wilkerson", "description": "Adipisicing ullamco eiusmod reprehenderit anim Lorem consectetur velit nisi tempor ad enim elit amet."}
   ],
   "highlights": [
-    {"id": "2ffe6b5bd350", "time": "72", "title": "Goal by Wilkerson"},
-    {"id": "e45849573fd0", "time": "44", "title": "Yellow card Murray"},
-    {"id": "812affc75157", "time": "12", "title": "Save Magpies"}
+    {"id": "2ffe6b5bd350", "commentary_id": "d5d8643e-6f22-4a43-b9a8-59b94970aa92", "time": "72", "title": "Goal by Wilkerson"},
+    {"id": "e45849573fd0", "commentary_id": "438efca0-1905-48a4-b4c6-0281780092b5", "time": "44", "title": "Yellow card Murray"},
+    {"id": "812affc75157", "commentary_id": "f6f751ff-6b5f-434f-bcc6-cc6d943ae38c", "time": "12", "title": "Save Magpies"}
   ]
 }

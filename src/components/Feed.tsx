@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { FlatList, RefreshControl } from 'react-native';
+import { RefreshControl } from 'react-native';
 import { connect } from 'react-redux';
 // @ts-ignore
 import Timeline from 'react-native-timeline-feed';
@@ -10,6 +10,7 @@ const DEFAULT_CIRCLE_SIZE = 16;
 
 interface FeedItemProps {
   circleSize: number;
+  flatlistRef: {};
 }
 
 interface Props {
@@ -17,8 +18,6 @@ interface Props {
 }
 
 class Feed extends PureComponent<Props> {
-  flatlistRef = React.createRef<FlatList<any>>();
-
   prevItem: FeedItemProps | void = undefined;
 
   handleOnEventPress = (item: FeedItemProps) => {
@@ -28,8 +27,8 @@ class Feed extends PureComponent<Props> {
 
     this.prevItem = item;
 
-    if (this.flatlistRef !== null && this.flatlistRef.current !== null) {
-      this.flatlistRef.current.scrollToItem({ item });
+    if (this.props.flatlistRef !== null && this.props.flatlistRef.current !== null) {
+      this.props.flatlistRef.current.scrollToItem({ item });
     }
 
     this.forceUpdate();
@@ -44,7 +43,7 @@ class Feed extends PureComponent<Props> {
         data={(data && data.live_commentary) || []}
         onEventPress={this.handleOnEventPress}
         flatListProps={{
-          ref: this.flatlistRef,
+          ref: this.props.flatlistRef,
           contentContainerStyle: {
             paddingHorizontal: 20,
           },
